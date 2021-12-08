@@ -42,23 +42,34 @@ export default {
       posts: [],
       question: this.questionProp,
       questionName: "",
-      renderForm: true
+      renderForm: true,
+      baseUrl: process.env.BASE_URL || 'http://localhost:5000'
     };
   },
   created() {
     this.fetchQuestion()
   },
+  //env: {
+  //  baseUrl: process.env.BASE_URL || 'http://localhost:5000'
+  //},
   methods: {
     async fetchQuestion() {
-      const qDict = await this.$axios.$get('http://localhost:5000/nextQuestion')
+      const url = `${this.baseUrl}/nextQuestion`
+      console.log(url)
+      console.log(process.env.baseUrl)
+      const qDict = await this.$axios.$get(url)
       this.handleQDict(qDict)
     },
     async postAnswer(){
-      const qDict = await this.$axios.$post(`http://localhost:5000/answer/${this.questionName}/${this.answer}`)
+      const url = `${this.baseUrl}/answer/${this.questionName}/${this.answer}`
+      console.log(url)
+      const qDict = await this.$axios.$post(url)
       this.handleQDict(qDict)
     },
     async reset(){
-      const qDict = await this.$axios.$post('http://localhost:5000/reset')
+      const url = `${this.baseUrl}/reset`
+      console.log(url)
+      const qDict = await this.$axios.$post(url)
       this.handleQDict(qDict)
       this.renderForm = true
     },

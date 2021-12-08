@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ktp-backend
+  namespace: ktp
+  labels:
+   app: ktp-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ktp-backend
+  template:
+    metadata:
+      labels:
+        app: ktp-backend
+    spec:
+      containers:
+      - name: ktp-backend-container
+        image: tonisnakes/privates:ktp-backend-arm
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+      imagePullSecrets:
+      - name: docker-login
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ktp-backend-service
+  namespace: ktp
+spec:
+  selector:
+    app: ktp-backend
+  ports:
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-ktp-backend
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  namespace: ktp
+spec:
+  tls:
+  - hosts:
+    - ktp-backend.tonisworkshop.com
+    secretName: ktp-backend-tls
+  rules:
+  - host: ktp-backend.tonisworkshop.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ktp-backend-service
+            port:
+              number: 80

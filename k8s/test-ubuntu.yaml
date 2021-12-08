@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-ubuntu
+  namespace: ktp
+  labels:
+   app: test-ubuntu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-ubuntu
+  template:
+    metadata:
+      labels:
+        app: test-ubuntu
+    spec:
+      containers:
+      - name: test-ubuntu-container
+        image: ubuntu:latest
+        command:
+          - "sleep"
+          - "604800"
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+      imagePullSecrets:
+      - name: docker-login
