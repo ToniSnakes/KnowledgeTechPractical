@@ -1,22 +1,23 @@
-<!-- Please remove this file from your project -->
 <template>
   <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-2xl leading-7 font-semibold">
-          Hello Routes!
+          Statistics Picker
         </h2>
         <p class="mt-3 text-gray-600">
           {{ question }}
         </p>
-        <!-- <input class="mt-4 text-gray-800 border-t border-dashed" v-model="message" placeholder="yes/no">
-        <button v-on:click="counter += 1">Send</button> -->
         <form id="signup-form" class="mt-4 text-gray-800 border-t border-dashed" v-if="renderForm">
           <!-- name -->
           <div class="field">
-            <label class="label">Answer</label>
-            <input type="text" class="input" name="name" v-model="answer" placeholder="yes/no" v-if="renderTextInput">
+            <label class="label">Answer:</label><br>
+            <!-- <input type="text" class="input" name="name" v-model="answer" placeholder="yes/no" v-if="renderTextInput"><br> reference -->
+            <div v-for="answerOption in answerOptions" :key="answerOption">
+              <!-- <RadioOption :answerOption="answerOption" @update="radioOption(answerOption)"/> -->
+              <input type="radio" name="radio" v-model="answer" :value="answerOption">{{ answerOption }}<br>
+            </div>
           </div>
 
           <!-- submit button -->
@@ -43,15 +44,13 @@ export default {
       question: this.questionProp,
       questionName: "",
       renderForm: true,
-      baseUrl: process.env.BASE_URL || 'http://localhost:5000'
+      baseUrl: process.env.BASE_URL || 'http://localhost:5000',
+      answerOptions: []
     };
   },
   created() {
     this.fetchQuestion()
   },
-  //env: {
-  //  baseUrl: process.env.BASE_URL || 'http://localhost:5000'
-  //},
   methods: {
     async fetchQuestion() {
       const url = `${this.baseUrl}/nextQuestion`
@@ -80,22 +79,25 @@ export default {
       if (qDict.name == "solved") {
         this.renderForm = false
       }
+      else {
+        this.answerOptions = qDict.answers
+      }
     },
-    reloadForm(newQ){
-      this.renderTextInput = false;
+    reloadForm(){
+      //this.renderTextInput = false;
       this.answer = ""
 
-      this.$nextTick(() => {
+      /*this.$nextTick(() => {    // keep as reference if we need it again
         this.renderTextInput = true;
-      })
+      })*/
     },
     formSubmit() {
       console.log('form submitted')
       console.log(this.answer)
-      if (this.answer != "yes" && this.answer != "no") {
-        console.log("wrong input")
+      if (this.answer == "") {
+        console.log("no input")
         this.reloadForm()
-        this.question = `${this.question}\nPlease only use yes/no` // extremely jank
+        this.question = `${this.question}\nPlease specify a value` // extremely jank
       }
       else {
         this.postAnswer()

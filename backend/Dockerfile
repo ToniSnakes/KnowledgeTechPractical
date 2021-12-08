@@ -2,7 +2,7 @@
 FROM ubuntu:latest
 RUN apt-get update && apt-get install -y python3 python3.8-venv bash python3-pip
 
-COPY hello.py /
+COPY prototype.py /
 COPY init_backend.sh /
 #COPY init_backend-arm.sh /
 RUN python3 -m venv venv
