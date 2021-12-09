@@ -8,8 +8,7 @@ The relevant code for the frontend is in `frontend/hello/components` and `fronte
 
 ## How to run ##
 
-To run the backend (you need python3):
-
+To run the backend on Ubuntu (you need python3):
 ```
 cd backend/
 rm -r venv
@@ -23,10 +22,23 @@ export FLASK_EVN=development
 flask run
 ```
 
-This will install a package that you need to use the virtual environment, it activates it (which should have all of the python packages you need to run the script, if it doesn't let me know) and then it starts the backend on localhost:5000, with self-update whenever you save the script
+To run the backend on Windows Powershell (you need python3):
+```
+cd backend
+Rmdir venv
+python3 -m venv venv
+.\venv\Scripts\activate
+pip3 install Flask
+pip3 install flask-cors
+$env:FLASK_APP="hello"
+$env:FLASK_EVN="development"
+flask run
+```
+
+This will install a package that you need to use the virtual environment, it activates it, and starts the backend on localhost:5000, with self-update whenever you save the script
 
 
-To run the frontend (you need npm):
+To run the frontend (you need npm) on Ubuntu and Windows:
 
 ```
 cd frontend/hello/

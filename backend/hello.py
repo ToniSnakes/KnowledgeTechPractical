@@ -82,7 +82,6 @@ def reset():
   resetState()
   return nextQuestion()
 
-
 ## Below you have how the inference looks in normal code
 
 #while (True):
