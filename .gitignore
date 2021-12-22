@@ -1,3 +1,4 @@
 **/*.swp
 **/docker-login.yaml
 backend/venv/
+backend/__pycache__/

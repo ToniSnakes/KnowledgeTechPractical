@@ -18,7 +18,7 @@ python3 -m venv venv
 pip3 install Flask
 pip3 install flask-cors
 export FLASK_APP=prototype
-export FLASK_EVN=development
+export FLASK_ENV=development
 flask run
 ```
 
@@ -31,7 +31,7 @@ python3 -m venv venv
 pip3 install Flask
 pip3 install flask-cors
 $env:FLASK_APP="prototype.py"
-$env:FLASK_EVN="development"
+$env:FLASK_ENV="development"
 flask run
 ```
 
