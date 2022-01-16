@@ -4,3 +4,7 @@ start = {
   "homoskedastic": "unknown",
   "independent observations": "unknown"
   }
+emptyTrace = {
+    "rules": [],
+    "facts": [start.copy()]
+  }

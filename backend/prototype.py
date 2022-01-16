@@ -1,3 +1,4 @@
+import copy
 from flask import Flask
 from flask_cors import CORS
 from markupsafe import escape
@@ -9,7 +10,7 @@ CORS(app)
 
 # create a copy to fall back to the start if needed
 state = start.copy()
-trace = {}
+trace = copy.deepcopy(emptyTrace)
 stack = []
 
 def stack_print(stack):
@@ -25,7 +26,7 @@ def add_step(state, trace):
   stack_print(stack)
   step = {}
   step["state"] = state.copy()
-  step["trace"] = trace.copy()
+  step["trace"] = copy.deepcopy(trace)
   print("==========   NEXT STACK    ==========")
   stack.append(step)
   stack_print(stack)
@@ -69,7 +70,7 @@ def undoState():
   print("==========      STEP       ==========")
   print(step)
   state = step["state"].copy()
-  trace = step["trace"].copy()
+  trace = copy.deepcopy(step["trace"])
   add_step(state, trace) # Inefficient 2/2: re-add the last element
                          # Kept inefficiency since copies cannot be avoided anyway
 
@@ -79,7 +80,7 @@ def resetState():
   '''
   global state, trace, stack
   state = start.copy()
-  trace = {}
+  trace = copy.deepcopy(emptyTrace)
   stack = []
   add_step(state, trace)
 
@@ -92,6 +93,12 @@ def findKeywords(text):
       if word.lower() == key.lower() or word[:-1].lower() == key.lower():
         found[word] = keywords[key]
   return found
+
+def traceUpdate(key, value):
+  global trace
+  for traceStep in trace["facts"]:
+    if key in traceStep:
+      traceStep[key] = value
 
 
 @app.route("/") # reroute default request to be handled by next question
@@ -106,12 +113,14 @@ def nextQuestion():
   if nextQ == "solved": # return final recommendation
     recommend = solve()
     return { "name": nextQ, "question": recommendations[recommend],
-              "description": descriptions[recommend] }
+              "description": descriptions[recommend],
+              "trace": trace }
   question_text = questions[nextQ]["question"]
   present_keywords = findKeywords(question_text)
   return { "name": nextQ, "question": question_text,
     "answers": list(questions[nextQ]["answers"].keys()),
-    "keywords": present_keywords} # return the next question
+    "keywords": present_keywords,
+    "trace": trace } # return the next question
 
 @app.route("/answer/<question>/<inp>", methods=['POST'])
 def processAnswer(question, inp):
@@ -127,8 +136,9 @@ def processAnswer(question, inp):
     if inp == answer:
       for key, value in values.items():
         state[key] = value
+        traceUpdate(key, value)
       break
-  forward_chaining(state)
+  forward_chaining(state, trace)
   add_step(state, trace)
   return nextQuestion()
 
