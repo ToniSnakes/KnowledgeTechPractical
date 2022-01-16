@@ -59,7 +59,8 @@ def nextQuestion():
   nextQ = findQ()
   if nextQ == "solved": # return final recommendation
     recommend = solve()
-    return { "name": nextQ, "question": recommendations[recommend] }
+    return { "name": nextQ, "question": recommendations[recommend],
+              "description": descriptions[recommend] }
   question_text = questions[nextQ]["question"]
   present_keywords = findKeywords(question_text)
   return { "name": nextQ, "question": question_text,
