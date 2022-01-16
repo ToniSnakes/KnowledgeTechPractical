@@ -9,6 +9,29 @@ CORS(app)
 
 # create a copy to fall back to the start if needed
 state = start.copy()
+trace = {}
+stack = []
+
+def stack_print(stack):
+  for step in stack:
+    print("")
+    print(step)
+  print("")
+
+def add_step(state, trace):
+  global stack
+  print("========== ADDING TO STACK ==========")
+  print("==========  CURRENT STACK  ==========")
+  stack_print(stack)
+  step = {}
+  step["state"] = state.copy()
+  step["trace"] = trace.copy()
+  print("==========   NEXT STACK    ==========")
+  stack.append(step)
+  stack_print(stack)
+  print("==========    END ADD      ==========")
+
+add_step(state, trace)
 
 def findQ():
   '''
@@ -30,12 +53,35 @@ def solve():
 
   return sol
 
+def undoState():
+  '''
+  Undoes the last interaction by popping the state from the stack
+  '''
+  global state, trace, stack
+  print("======== REMOVING FROM STACK ========")
+  print("==========  CURRENT STACK  ==========")
+  stack_print(stack)
+  step = stack.pop() # Remove the last commit
+  step = stack.pop() # Inefficient 1/2: get the last element
+  print("==========   NEXT STACK    ==========")
+  stack_print(stack)
+  print("==========   END REMOVE    ==========")
+  print("==========      STEP       ==========")
+  print(step)
+  state = step["state"].copy()
+  trace = step["trace"].copy()
+  add_step(state, trace) # Inefficient 2/2: re-add the last element
+                         # Kept inefficiency since copies cannot be avoided anyway
+
 def resetState():
   '''
   Resets the interaction by copying the original starting state into the current state.
   '''
-  global state
+  global state, trace, stack
   state = start.copy()
+  trace = {}
+  stack = []
+  add_step(state, trace)
 
 def findKeywords(text):
   to_find = list(keywords.keys())
@@ -83,6 +129,17 @@ def processAnswer(question, inp):
         state[key] = value
       break
   forward_chaining(state)
+  add_step(state, trace)
+  return nextQuestion()
+
+@app.route("/undo", methods=['POST'])
+def undo():
+  '''
+  Undoes the last answer by popping it from the stack
+
+  :return: next question callback
+  '''
+  undoState()
   return nextQuestion()
 
 @app.route("/reset", methods=['POST'])

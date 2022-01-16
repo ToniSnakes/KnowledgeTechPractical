@@ -26,6 +26,9 @@
           </div>
         </form>
         <div class="field has-text-right mt-4 border-dashed">
+          <button @click.prevent="undo" type="submit" class="button is-danger">Undo</button>
+        </div>
+        <div class="field has-text-right mt-4 border-dashed">
           <button @click.prevent="reset" type="submit" class="button is-danger">Reset</button>
         </div>
       </div>
@@ -64,6 +67,13 @@ export default {
       console.log(url)
       const qDict = await this.$axios.$post(url)
       this.handleQDict(qDict)
+    },
+    async undo(){
+      const url = `${this.baseUrl}/undo`
+      console.log(url)
+      const qDict = await this.$axios.$post(url)
+      this.handleQDict(qDict)
+      this.renderForm = true
     },
     async reset(){
       const url = `${this.baseUrl}/reset`

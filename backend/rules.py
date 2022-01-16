@@ -1,7 +1,11 @@
 # List of rules
 rules = [
+#          { "premises": { "homoskedastic": "true", "independent observations": "true" },
+#            "conclusion": { "regression": "true", "output continuity": "unknown" } },
           { "premises": { "homoskedastic": "true", "independent observations": "true" },
-            "conclusion": { "regression": "true", "output continuity": "unknown" } },
+            "conclusion": { "regression": "true" } },
+          { "premises": { "regression": "true" },
+            "conclusion": { "output continuity": "unknown" } },
           { "premises": { "regression": "true", "output continuity": "false" },
             "conclusion": { "logistic regression": "true" } },
           { "premises": { "regression": "true", "output continuity": "true" },
