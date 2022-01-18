@@ -14,7 +14,7 @@
     <nuxt-link class="home-button" to="/">Home</nuxt-link>
       <h1 class="text-2xl mt-4 leading-7 font-bold uppercase">Statistics Picker</h1>
       <p class="mt-4">
-        <span>Question <span
+        <!--<span>Question <span
         class="
           rounded-full
           bg-indigo-400
@@ -26,9 +26,9 @@
           mr-3
         "
         >{{no}}/10</span
-      ></span> 
+      ></span>--> 
       </p>
-      <Alert v-if="!!message" :message="message" status="'error'" />
+      <!-- <Alert v-if="!!message" :message="message" status="'error'" /> -->
 
       <vue-tailwind-modal
         :showing="showModal"
@@ -50,7 +50,7 @@
             {{ question }}
           </p>
 
-          <div>
+          <div v-if="questionName != 'solved'">
             <!-- <RadioOption :answerOption="answerOption" @update="radioOption(answerOption)"/> -->
 
             <div
@@ -66,6 +66,9 @@
               />
               <label class="ml-4 capitalize"> {{ answerOption }}</label>
             </div>
+          </div>
+          <div v-if="questionName == 'solved'">
+            <span style="white-space: pre-wrap;">{{ description }}</span>
           </div>
         </div>
         <div class="px-6 pt-4 pb-2">
@@ -180,7 +183,7 @@
 
 <script>
 import VueTailwindModal from 'vue-tailwind-modal'
-import Alert from './Alert.vue'
+//import Alert from './Alert.vue'
 export default {
   props: ['questionProp'],
   data() {
@@ -190,6 +193,7 @@ export default {
       posts: [],
       question: this.questionProp,
       questionName: '',
+      description: '',
       renderForm: true,
       baseUrl: process.env.BASE_URL || 'http://localhost:5000',
       answerOptions: [],
@@ -242,6 +246,7 @@ export default {
       this.no += 1
       if (qDict.name == 'solved') {
         this.renderForm = false
+        this.description = qDict.description
         this.message = "You've solved this question. Go to the next question"
       } else {
         this.answerOptions = qDict.answers
@@ -274,7 +279,7 @@ export default {
 
     nextQuestion() {},
   },
-  components: { Alert, VueTailwindModal },
+  //components: { Alert, VueTailwindModal },
 }
 </script>
 

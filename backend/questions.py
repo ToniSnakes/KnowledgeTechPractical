@@ -19,17 +19,17 @@ questions = {
     "situation":
     {
         "question": "How many samples (or groups) and measurements were taken?",
-        "answers": { "One sample, one measurement": { "situation": "one sample, one measurement" }, "One sample, two measurements": { "situation": "one sample, two measurements" } , "Two samples / groups, one measurement" : {"situation": "two samples / groups, one measurement"}, "More than two samples (or groups), one measurement": { "situation": "more than two samples (or groups), one measurement" }, "One sample, more than two measurements": { "situation": "one sample, more than two measurements" } },
-        "info": """The number of samples is the number of times a subset of subjects/observations is drawn from the population. With multiple measurements, the same subjects/observations are measured multiple times, e.g. before and after a treatment. multiple measurements are usually dependent."""
+        "answers": { "One sample, one measurement": { "situation": "one sample, one measurement" }, "One sample, two measurements": { "situation": "one sample, two measurements" } , "Two samples or groups, one measurement" : {"situation": "two samples or groups, one measurement"}, "More than two samples (or groups), one measurement": { "situation": "more than two samples (or groups), one measurement" }, "One sample, more than two measurements": { "situation": "one sample, more than two measurements" } },
+        "info": """The number of samples is the number of times a subset of subjects or observations is drawn from the population. With multiple measurements, the same subjects or observations are measured multiple times, e.g. before and after a treatment. multiple measurements are usually dependent."""
     },
     #4.
     "goal":
     {
         "question": "What's your goal?",
-        "answers": { "Test for a relationship": {"goal": "test for a relationship"}, "Compare against a hypothesized value / distribution": {"goal": "compare against hypothesized value / distribution"}, "Compare statistics (e.g. means, variances) between samples / groups": { "goal": "compare statistics (e.g. means, variances) between samples / groups"}},
+        "answers": { "Test for a relationship": {"goal": "test for a relationship"}, "Compare against a hypothesized value or distribution": {"goal": "compare against hypothesized value or distribution"}, "Compare statistics (e.g. means, variances) between samples or groups": { "goal": "compare statistics (e.g. means, variances) between samples or groups"}},
         "info": """Testing for a relationship includes determining the strength of a correlation, tests for independence, and tests for the effects of variables on each other.
-        Comparing against a hypothesized value / distribution includes, for example, testing whether a mean is different from a hypothesized theoretical mean.
-        Comparing statistics (e.g. means, variances) between samples / groups includes, for example, testing for a difference in means between two samples."""
+        Comparing against a hypothesized value or distribution includes, for example, testing whether a mean is different from a hypothesized theoretical mean.
+        Comparing statistics (e.g. means, variances) between samples or groups includes, for example, testing for a difference in means between two samples."""
     },
     #5.
     "dv normally distributed":
@@ -44,7 +44,7 @@ questions = {
     "iv type":
     {
         "question": "Of what type is your independent variable?",
-        "answers": {"Categorical (nominal/ordinal)": {"iv type": "categorical (nominal/ordinal)"}, "Numerical (continuous/discrete)": {"iv type": "numerical (continuous/discrete)"}},
+        "answers": {"Categorical (nominal or ordinal)": {"iv type": "categorical (nominal or ordinal)"}, "Numerical (continuous or discrete)": {"iv type": "numerical (continuous or discrete)"}},
         "info": """In your setting, the independent variable is likely a variable that has an effect on a dependent variable.
         Examples of numerical data: height in meters, age in years, and income in euros.
         Examples of categorical data: country of origin, hair color."""
@@ -69,14 +69,14 @@ questions = {
     #9
     "equal variances":
     {
-        "question": "Are the variances between the samples/groups equal?",
+        "question": "Are the variances between the samples or groups equal?",
         "answers":  {"Equal variances": {"equal variances": "true"}, "Unequal variances": {"equal variances": "false"}},
         "info": """The variance (r: var(.)) is a measure of how spread out the values are in the sample. If unsure about equal variances, perform an f-test or use the rule of thumb: if the ratio between the larger and smaller variance is less than 4, they may be considered equal"""
     },
     #10.
     "equal sample sizes":
     {
-        "question": "Are the sizes of the samples/groups equal?",
+        "question": "Are the sizes of the samples or groups equal?",
         "answers":  {"Equal sample sizes": {"equal sample sizes": "true"}, "Unequal sample sizes": {"equal sample sizes": "false"}},
         "info": """r: length(.)"""
     },
@@ -108,7 +108,7 @@ questions = {
     "dv type":
     {
         "question": "Of what type is your dependent variable?",
-        "answers":  {"Categorical (nominal/ordinal)": {"dv type": "categorical"}, "Numerical (continuous/discrete)": {"dv type": "numerical"}},
+        "answers":  {"Categorical (nominal or ordinal)": {"dv type": "categorical"}, "Numerical (continuous or discrete)": {"dv type": "numerical"}},
         "info": """The dependent variable is a variable whose value depends on that of at least another (independent variable).
         Examples of numerical data: height in meters, age in years, and income in euros.
         Examples of categorical data: country of origin, hair color"""
@@ -126,7 +126,7 @@ questions = {
     "goal-update":
     {
         "question": "What about the relationship are you looking for?",
-        "answers":  {"Test for an effect or model the relationship": {"goal-update": "test for an effect / find a model of the relationship"}, "Test for correlation": {"goal-update": "test for correlation"}, "Test for independence": {"goal-update": "test for independence"}},
+        "answers":  {"Test for an effect or model the relationship": {"goal-update": "test for an effect or find a model of the relationship"}, "Test for correlation": {"goal-update": "test for correlation"}, "Test for independence": {"goal-update": "test for independence"}},
         "info": """Test for an effect includes tests that show if one variable affects the other.
         A model of the relationship returns the strengths (coefficients) of these effects.
         A test for correlation tests whether or how strong the values of variables move in coordination with each other"""

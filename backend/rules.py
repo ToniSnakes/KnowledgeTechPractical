@@ -2,7 +2,7 @@
 rules = [
 	{
 		"premises": {
-			"goal": "compare against hypothesized value / distribution",
+			"goal": "compare against hypothesized value or distribution",
 			"dv type": "categorical"
 		},
 		"conclusion": {
@@ -12,7 +12,7 @@ rules = [
 	{
 		"premises": {
 			"goal": "test for a relationship",
-			"goal-update": "test for an effect / find a model of the relationship",
+			"goal-update": "test for an effect or find a model of the relationship",
 			"dv type": "categorical"
 		},
 		"conclusion": {
@@ -51,8 +51,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare against hypothesized value / distribution",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare against hypothesized value or distribution",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"dv normally distributed": "true",
 			"situation": "situation: one sample, one measurement"
@@ -63,8 +63,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare against hypothesized value / distribution",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare against hypothesized value or distribution",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"situation": "one sample, two measurements",
 			"dv normally distributed": "true"
@@ -75,8 +75,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare against hypothesized value / distribution",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare against hypothesized value or distribution",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"dv normally distributed": "false"
 		},
@@ -86,9 +86,9 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"situation": "one sample, one measurement",
-			"dv type": "numerical (continuous/discrete)",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"dv normally distributed": "false",
 			"statistics goal": "median"
@@ -99,8 +99,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"dv normally distributed": "false",
 			"situation": "one sample, two measurements",
@@ -112,9 +112,9 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"situation": "more than two samples (or groups), one measurement",
-			"dv type": "numerical (continuous/discrete)",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "median"
 		},
@@ -152,8 +152,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "one sample, one measurement",
@@ -165,8 +165,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "one sample, one measurement",
@@ -178,8 +178,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "one sample, two measurements",
@@ -191,8 +191,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "more than two samples (or groups), one measurement",
@@ -205,8 +205,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "more than two samples (or groups), one measurement",
@@ -219,8 +219,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "more than two samples (or groups), one measurement",
@@ -232,8 +232,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "more than two samples (or groups), one measurement",
@@ -245,8 +245,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"situation": "one sample, more than two measurements",
@@ -258,8 +258,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"dv normally distributed": "false",
@@ -271,12 +271,12 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"dv normally distributed": "true",
-			"situation": "two samples / groups, one measurement"
+			"situation": "two samples or groups, one measurement"
 		},
 		"conclusion": {
 			"f-test": "true"
@@ -284,8 +284,8 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal": "compare statistics (e.g. means, variances) between samples / groups",
-			"dv type": "numerical (continuous/discrete)",
+			"goal": "compare statistics (e.g. means, variances) between samples or groups",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"statistics goal": "mean",
 			"dv normally distributed": "true",
@@ -299,7 +299,7 @@ rules = [
 		"premises": {
 			"goal": "test for a relationship",
 			"goal-update": "test for correlation",
-			"dv type": "numerical (continuous/discrete)",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"variable types": "all continuous",
 			"linear relationship": "true"
@@ -311,8 +311,8 @@ rules = [
 	{
 		"premises": {
 			"goal": "test for a relationship",
-			"goal-update": "test for an effect / find a model of the relationship",
-			"dv type": "numerical (continuous/discrete)",
+			"goal-update": "test for an effect or find a model of the relationship",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"number of ivs": "one"
 		},
@@ -323,8 +323,8 @@ rules = [
 	{
 		"premises": {
 			"goal": "test for a relationship",
-			"goal-update": "test for an effect / find a model of the relationship",
-			"dv type": "numerical (continuous/discrete)",
+			"goal-update": "test for an effect or find a model of the relationship",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"number of ivs": "more than one",
 			"include all ivs": "true"
@@ -336,8 +336,8 @@ rules = [
 	{
 		"premises": {
 			"goal": "test for a relationship",
-			"goal-update": "test for an effect / find a model of the relationship",
-			"dv type": "numerical (continuous/discrete)",
+			"goal-update": "test for an effect or find a model of the relationship",
+			"dv type": "numerical (continuous or discrete)",
 			"dv type-update": "continuous (ratio or interval)",
 			"number of ivs": "more than one",
 			"include all ivs": "false"

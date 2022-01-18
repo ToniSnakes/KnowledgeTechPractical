@@ -147,6 +147,8 @@ def undoState():
   Undoes the last interaction by popping the state from the stack
   '''
   global state, trace, stack
+  if len(stack) == 1:
+    return
   print("======== REMOVING FROM STACK ========")
   print("==========  CURRENT STACK  ==========")
   stack_print(stack)
@@ -170,6 +172,7 @@ def resetState():
   state = start.copy()
   trace = copy.deepcopy(emptyTrace)
   stack = []
+  findUnknown()
   add_step(state, trace)
 
 def findKeywords(text):
@@ -219,6 +222,8 @@ def processAnswer(question, inp):
   :param inp: the user's answer
   :return: next question callback
   '''
+  print(question)
+  print(inp)
   answers = questions[question]["answers"]
   for answer, values in answers.items():
     if inp == answer:
