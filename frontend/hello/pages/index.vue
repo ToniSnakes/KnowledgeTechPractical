@@ -14,7 +14,7 @@
             leading-tight
           "
         >
-          Welcom to the 
+          Welcome to the 
           <span class="text-indigo-700">survey</span>
           of your dreams
         </h1>

@@ -13,22 +13,25 @@
     <div class="container mx-auto px-4 w-100 sm:w-10/12 md:w-8/12 z-index-10">
     <nuxt-link class="home-button" to="/">Home</nuxt-link>
       <h1 class="text-2xl mt-4 leading-7 font-bold uppercase">Statistics Picker</h1>
-      <p class="mt-4">
-        <!--<span>Question <span
-        class="
-          rounded-full
-          bg-indigo-400
-          uppercase
-          px-2
-          py-1
-          text-xs
-          font-bold
-          mr-3
-        "
-        >{{no}}/10</span
-      ></span>--> 
+      <!--<p class="mt-4">
+        <span
+          >Question
+          <span
+            class="
+              rounded-full
+              bg-indigo-400
+              uppercase
+              px-2
+              py-1
+              text-xs
+              font-bold
+              mr-3
+            "
+            >{{ no }}/10</span
+          ></span
+        >
       </p>
-      <!-- <Alert v-if="!!message" :message="message" status="'error'" /> -->
+      <Alert v-if="!!message" :message="message" status="'error'" />-->
 
       <vue-tailwind-modal
         :showing="showModal"
@@ -36,22 +39,29 @@
         :showClose="true"
         :backgroundClose="true"
         v-if="!!qDict && qDict.keywords"
-        style="z-index: 2000 !important;"
+        style="z-index: 2000 !important"
       >
         
-        <h3 class="text-xl leading-7 font-bold capitalize">Description</h3>
-        <div v-for="(item, index) in Object.values(qDict.keywords)" :key="index">{{item}}</div>
+        <h3 class="text-xl leading-7 font-bold capitalize">Key Terms:</h3>
+        <div
+          v-for="(item, index) in qDict.keywords"
+          :key="index"
+        >
+          <b>{{ index }}:</b> {{ item }}
+        </div>
       </vue-tailwind-modal>
 
       <div class="rounded-lg overflow-hidden shadow-lg bg-white mt-4 mb-32">
         <div class="px-6 py-4">
-          <!-- <div class="font-bold text-xl mb-2">Question 1</div> -->
           <p class="text-gray-700 text-xl">
             {{ question }}
+
+            <a class="link-button" v-if="!!question && questionName != 'solved'" @click="showModal = true"
+              >More Info</a
+            >
           </p>
 
           <div v-if="questionName != 'solved'">
-            <!-- <RadioOption :answerOption="answerOption" @update="radioOption(answerOption)"/> -->
 
             <div
               v-for="answerOption in answerOptions"
@@ -183,7 +193,7 @@
 
 <script>
 import VueTailwindModal from 'vue-tailwind-modal'
-//import Alert from './Alert.vue'
+import Alert from './Alert.vue'
 export default {
   props: ['questionProp'],
   data() {
@@ -251,10 +261,6 @@ export default {
       } else {
         this.answerOptions = qDict.answers
       }
-
-      setTimeout(() => {
-        this.showModal = true
-      }, 2000);
     },
     reloadForm() {
       //this.renderTextInput = false;
@@ -279,7 +285,7 @@ export default {
 
     nextQuestion() {},
   },
-  //components: { Alert, VueTailwindModal },
+  components: { Alert, VueTailwindModal },
 }
 </script>
 
@@ -301,5 +307,12 @@ img.illustration {
 .home-button:hover{
   color: rgb(0 97 255);
   text-decoration: underline;
+}
+.link-button {
+  color: rgb(0 97 255);
+}
+.link-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
