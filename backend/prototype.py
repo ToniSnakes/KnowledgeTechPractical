@@ -219,6 +219,7 @@ def nextQuestion():
   present_keywords = findKeywords(question_text)
   return { "name": nextQ, "question": question_text,
     "answers": list(questions[nextQ]["answers"].keys()),
+    "info": questions[nextQ]["info"],
     "keywords": present_keywords,
     "trace": trace } # return the next question
 
