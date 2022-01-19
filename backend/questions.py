@@ -53,7 +53,7 @@ questions = {
     "iv type-update":
     {
         "question": "Is your independent variable continuous or discrete?",
-        "answers":  {"Continuous": {"iv type-update": "continuous (ratio or interval)"}, "Discrete": {"iv type-update": "discrete"}},
+        "answers":  {"Continuous": {"iv type-update": "continuous"}, "Discrete": {"iv type-update": "discrete"}},
         "info": """In your setting, the independent variable is likely a variable that has an effect on a dependent variable.
         Examples of continuous data: height in meters, age in years.
         Examples of discrete data: number of points in a game, the test-score as a count of correct answers."""
@@ -117,7 +117,7 @@ questions = {
     "dv type-update":
     {
         "question": "Is your dependent variable continuous or discrete?",
-        "answers":  { "Continuous": {"dv type-update": "continuous (ratio or interval)"}, "Discrete": {"dv type-update": "discrete"}},
+        "answers":  { "Continuous": {"dv type-update": "continuous"}, "Discrete": {"dv type-update": "discrete"}},
         "info": """The dependent variable is a variable whose value depends on that of at least another (independent variable).
         Examples of continuous data: height in meters, age in years.
         Examples of discrete data: number of points in a game, the test-score as a count of correct answers"""
