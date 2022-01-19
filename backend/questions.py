@@ -44,7 +44,7 @@ questions = {
     "iv type":
     {
         "question": "Of what type is your independent variable?",
-        "answers": {"Categorical (nominal or ordinal)": {"iv type": "categorical (nominal or ordinal)"}, "Numerical (continuous or discrete)": {"iv type": "numerical (continuous or discrete)"}},
+        "answers": {"Categorical (nominal or ordinal)": {"iv type": "categorical (nominal or ordinal)"}, "Numerical (continuous or discrete)": {"iv type": "numerical"}},
         "info": """In your setting, the independent variable is likely a variable that has an effect on a dependent variable.
         Examples of numerical data: height in meters, age in years, and income in euros.
         Examples of categorical data: country of origin, hair color."""

@@ -1,4 +1,13 @@
 # List of rules
+find_unknowns_rule = {
+    "premises": {
+        "no goals found": "true",
+    },
+    "conclusion": {
+        "add new unknowns": "true"
+    }
+}
+
 rules = [
 	{
 		"premises": {
