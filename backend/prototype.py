@@ -35,6 +35,7 @@ def add_step(state, trace):
 goals = list(recommendations.keys())
 goals.pop() # remove the extra "none" state
 depth_tree = {}
+newTraceFacts = {}
 
 def findConclusion(goal):
   for rule in rules:
@@ -77,8 +78,9 @@ def getDepth(goal, rule):
   return depth_tree[goal]
 
 def buildDepth(goals):
-  global depth_tree
+  global depth_tree, newTraceFacts
   depth_tree = {}
+  newTraceFacts = {}
   for goal in goals:
     rule = findConclusion(goal)
     #if goal not in depth_tree.keys():
@@ -97,6 +99,7 @@ def setUnknown(goal):
       if premise in questions.keys() and premise not in state.keys():  # or in state
         print("TO ADD")
         print(premise)
+        newTraceFacts[premise] = "unknown"
         state[premise] = "unknown"
     elif premise in depth_tree.keys():
       setUnknown(premise)
@@ -104,18 +107,24 @@ def setUnknown(goal):
 def findUnknown():
   buildDepth(goals)
   lowest_goal = ""
-  global depth_tree
+  global depth_tree, newTraceFacts
   depth_tree = dict(sorted(depth_tree.items(), key=lambda item: item[1]))
+  trace["facts"].append(newTraceFacts)
+  newRules = []
+  newRules.append(find_unknowns_rule)
+  trace["rules"].append(newRules)
   for goal in depth_tree.keys():
     if goal in goals:
       lowest_goal = goal
       break
   setUnknown(lowest_goal)
+  stack.pop()
+  add_step(state, trace)
   print(depth_tree)
 
-findUnknown()
-
 add_step(state, trace)
+
+findUnknown()
 
 def findQ():
   '''
