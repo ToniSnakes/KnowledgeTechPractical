@@ -181,8 +181,8 @@ def resetState():
   state = start.copy()
   trace = copy.deepcopy(emptyTrace)
   stack = []
-  findUnknown()
   add_step(state, trace)
+  findUnknown()
 
 def findKeywords(text):
   to_find = list(keywords.keys())
