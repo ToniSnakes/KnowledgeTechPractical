@@ -12,7 +12,7 @@
   >
     <div class="container mx-auto px-4 w-100 sm:w-10/12 md:w-8/12 z-index-10">
     <nuxt-link class="home-button" to="/">Home</nuxt-link>
-      <h1 class="text-2xl mt-4 leading-7 font-bold uppercase">Statistics Picker</h1>
+      <h1 class="text-2xl mt-4 leading-7 font-bold">TestChooser</h1>
       <!--<p class="mt-4">
         <span
           >Question
@@ -42,19 +42,9 @@
         style="z-index: 2000 !important"
       >
         <h3 class="text-xl leading-7 font-bold capitalize">Question Description:</h3>
+        <br>
         <div v-if="qDict.info">
           {{ qDict.info }}
-        </div>
-        <br>
-        <h3 class="text-xl leading-7 font-bold capitalize">Key Terms:</h3>
-        <div v-if!="qDict.keywords.length">
-          None
-        </div>
-        <div
-          v-for="(item, index) in qDict.keywords"
-          :key="index"
-        >
-          <b>{{ index }}:</b> {{ item }}
         </div>
       </vue-tailwind-modal>
 
