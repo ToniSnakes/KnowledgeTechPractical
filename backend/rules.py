@@ -1,6 +1,6 @@
 # List of rules
 find_unknowns_rule = {
-    "premises": {
+    "premisses": {
         "no goals found": "true",
     },
     "conclusion": {
@@ -10,7 +10,7 @@ find_unknowns_rule = {
 
 rules = [
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare against hypothesized value or distribution",
 			"dv type": "categorical"
 		},
@@ -19,7 +19,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for an effect or find a model of the relationship",
 			"dv type": "categorical"
@@ -29,7 +29,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for independence",
 			"variable types": "all categorical"
@@ -39,7 +39,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"test class": "z- or t-test (one-sample)",
 			"variance known": "false",
 			"sample size": "small"
@@ -49,7 +49,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"test class": "z- or t-test (one-sample)",
 			"variance known": "true",
 			"sample size": "large"
@@ -59,7 +59,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare against hypothesized value or distribution",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -71,7 +71,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare against hypothesized value or distribution",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -83,7 +83,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare against hypothesized value or distribution",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -94,7 +94,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"situation": "one sample, one measurement",
 			"dv type": "numerical",
@@ -107,7 +107,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -120,7 +120,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"situation": "more than two samples (or groups), one measurement",
 			"dv type": "numerical",
@@ -132,7 +132,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"test class": "t-test (unpaired two sample)",
 			"equal variances": "true",
 			"equal sample sizes": "true"
@@ -142,25 +142,25 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"test class": "t-test (unpaired two sample)",
 			"equal variances": "false"
 		},
 		"conclusion": {
-			"welch's t-test": "true"
+			"welsh's t-test": "true"
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"test class": "t-test (unpaired two sample)",
 			"equal sample sizes": "false"
 		},
 		"conclusion": {
-			"welch's t-test": "true"
+			"welsh's t-test": "true"
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -173,7 +173,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"statistics goal-update": "mean",
@@ -185,7 +185,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -198,7 +198,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -212,7 +212,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -226,7 +226,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -239,7 +239,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -252,7 +252,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -265,7 +265,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -278,7 +278,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
@@ -291,11 +291,11 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"dv type": "numerical",
 			"dv type-update": "continuous",
-			"statistics goal-update": "mean",
+			"statistics goal-update": "variances",
 			"dv normally distributed": "true",
 			"situation": "more than two samples (or groups), one measurement"
 		},
@@ -304,7 +304,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for correlation",
 			"variable types": "all continuous",
@@ -315,7 +315,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for correlation",
 			"variable types": "all continuous",
@@ -326,7 +326,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for an effect or find a model of the relationship",
 			"dv type": "numerical",
@@ -338,7 +338,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for an effect or find a model of the relationship",
 			"dv type": "numerical",
@@ -351,7 +351,7 @@ rules = [
 		}
 	},
 	{
-		"premises": {
+		"premisses": {
 			"goal": "test for a relationship",
 			"relationship goal-update": "test for an effect or find a model of the relationship",
 			"dv type": "numerical",
@@ -366,16 +366,16 @@ rules = [
 ]
 
 rules2 = [
-          { "premises": { "homoskedastic": "true", "independent observations": "true" },
+          { "premisses": { "homoskedastic": "true", "independent observations": "true" },
             "conclusion": { "regression": "true" } },
-          { "premises": { "regression": "true", "output continuity": "false" },
+          { "premisses": { "regression": "true", "output continuity": "false" },
             "conclusion": { "logistic regression": "true" } },
-          { "premises": { "regression": "true", "output continuity": "true" },
+          { "premisses": { "regression": "true", "output continuity": "true" },
             "conclusion": { "not logistic": "true" } },
-          { "premises": { "not logistic": "true", "output continuity": "true", "linear relationship": "true", "output normally distributed": "true" },
+          { "premisses": { "not logistic": "true", "output continuity": "true", "linear relationship": "true", "output normally distributed": "true" },
             "conclusion": { "linear or lasso": "true" } },
-          { "premises": { "linear or lasso": "true", "all predictors important": "true" },
+          { "premisses": { "linear or lasso": "true", "all predictors important": "true" },
             "conclusion": { "linear regression": "true" } },
-          { "premises": { "linear or lasso": "true", "all predictors important": "false" },
+          { "premisses": { "linear or lasso": "true", "all predictors important": "false" },
             "conclusion": { "lasso regression": "true" } }
 ]

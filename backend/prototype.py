@@ -50,7 +50,7 @@ def getDepth(goal, rule):
   #  print("DEBUGGING")
   #  print(state)
   max_depth = 0
-  for premise in rule["premises"].keys():
+  for premise in rule["premisses"].keys():
     #if goal == "logistic regression":
     #  print(premise)
     if premise in depth_tree.keys():
@@ -65,12 +65,12 @@ def getDepth(goal, rule):
     #  print(goal)
     #  print(premise)
     #  print(state[premise])
-    #  print(rule["premises"][premise])
-    if premise in state.keys() and state[premise] != rule["premises"][premise]:
+    #  print(rule["premisses"][premise])
+    if premise in state.keys() and state[premise] != rule["premisses"][premise]:
       depth = HIGH_NUMBER # high number
     elif new_rule:
       if premise not in state.keys():
-        #depth = getDepth(list(new_rule["premises"].keys()))
+        #depth = getDepth(list(new_rule["premisses"].keys()))
         depth = getDepth(premise, new_rule)
     if depth > max_depth:
       max_depth = depth
@@ -91,7 +91,7 @@ def setUnknown(goal):
   print(goal)
   rule = findConclusion(goal)
   print(depth_tree[goal])
-  for premise in rule["premises"].keys():
+  for premise in rule["premisses"].keys():
     #if depth_tree[rule] == 1 and premise not in depth_tree.keys():
     if depth_tree[goal] == 1:
       #if premise not in depth_tree.keys():  # or in state
@@ -104,23 +104,86 @@ def setUnknown(goal):
     elif premise in depth_tree.keys():
       setUnknown(premise)
 
+def expand_premisses(fact, value, goal):
+  if goal == 'pearson correlation':
+    print(goal)
+  new_premisses = []
+  for rule in rules:
+    for conclusion in rule["conclusion"].items():
+      if conclusion == (fact, value):
+        for premisse, value in rule["premisses"].items():
+          if goal == 'pearson correlation':
+            print(state)
+            print(value)
+          if premisse in list(state.keys()):
+            if not state[premisse] == value:
+              return False
+            else:
+              continue
+          new_premisses_candidate = expand_premisses(premisse, value, goal)
+          if not new_premisses_candidate:
+            return False
+          new_premisses += new_premisses_candidate
+  if new_premisses:
+    return new_premisses # Otherwise return None
+  return [fact]
+
+def find_premisses(goal):
+  premisses = []
+  for rule in rules:
+    for conclusion in rule["conclusion"].items():
+      if conclusion == (goal, 'true'):
+        for premisse, value in rule["premisses"].items():
+          if premisse in list(state.keys()):
+            if not state[premisse] == value:
+              return []
+            else:
+              continue
+          premisses_candidate = expand_premisses(premisse, value, goal)
+          if not premisses_candidate:
+            return []
+          else:
+            print(premisses_candidate)
+          premisses += premisses_candidate
+  return premisses
+
 def findUnknown():
-  buildDepth(goals)
-  lowest_goal = ""
-  global depth_tree, newTraceFacts
-  depth_tree = dict(sorted(depth_tree.items(), key=lambda item: item[1]))
-  trace["facts"].append(newTraceFacts)
-  newRules = []
-  newRules.append(find_unknowns_rule)
-  trace["rules"].append(newRules)
-  for goal in depth_tree.keys():
-    if goal in goals:
-      lowest_goal = goal
-      break
-  setUnknown(lowest_goal)
-  stack.pop()
-  add_step(state, trace)
-  print(depth_tree)
+  var_count = {}
+  for goal in goals:
+    premisses = find_premisses(goal)
+    for premisse in premisses:
+      if premisse not in var_count.keys():
+        var_count[premisse] = [goal]
+      elif goal not in var_count[premisse]:
+        var_count[premisse].append(goal)
+  if len(var_count.keys()) == 0:
+    state["none"] = "true"
+    return
+  most_important_var = list(var_count.keys())[0]
+  print("VAR COUNT")
+  print(var_count)
+  for var, values in var_count.items():
+    if len(list(values)) > len(var_count[most_important_var]):
+      most_important_var = var
+  print(most_important_var)
+  state[most_important_var] = "unknown"
+
+  # buildDepth(goals)
+  # lowest_goal = ""
+  # global depth_tree, newTraceFacts
+  # depth_tree = dict(sorted(depth_tree.items(), key=lambda item: item[1]))
+  # trace["facts"].append(newTraceFacts)
+  # newRules = []
+  # newRules.append(find_unknowns_rule)
+  # trace["rules"].append(newRules)
+  # for goal in depth_tree.keys():
+  #   if goal in goals:
+  #     lowest_goal = goal
+  #     break
+  # setUnknown(lowest_goal)
+  # stack.pop()
+  # add_step(state, trace)
+  # print(depth_tree)
 
 add_step(state, trace)
 

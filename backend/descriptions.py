@@ -113,9 +113,9 @@ descriptions = {
   - sample sizes are equal
   R-command(s):
   """,
-  "welch's t-test":
+  "welsh's t-test":
   """
-  Welch's t-test
+  Welsh's t-test
   When to use it?
   dv type continuous, goal: compare statistics (e.g. means, variances) between samples / groups (q4), statistics goal: mean (q8), situation: one sample, one measurement (q3), DV Normally distributed: true (q5), Unequal variances (q9), Unequal sample sizes (q10)
   Assumption(s):

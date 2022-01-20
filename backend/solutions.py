@@ -11,7 +11,7 @@ solutions = [
     "wilcoxon matched-pairs signed rank test",
     "moods median",
     "student's t-test",
-    "welch's t-test",
+    "welsh's t-test",
     "mann whitney u test (wilcoxon rank sum test)",
     "t-test (paired sample)",
     "one-way anova",

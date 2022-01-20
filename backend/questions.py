@@ -3,11 +3,11 @@
 questions = {
     #1.
     "variance known":
-        {
-            "question": "Is the population variance known?",
-            "answers": { "Yes": { "variance known": "true" }, "No": { "variance known": "false" } },
-            "info": """Possibly, known from prior experiments."""
-        },
+    {
+        "question": "Is the population variance known?",
+        "answers": { "Yes": { "variance known": "true" }, "No": { "variance known": "false" } },
+        "info": """Possibly, known from prior experiments."""
+    },
     #2.
     "sample size":
     {

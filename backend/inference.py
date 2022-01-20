@@ -9,7 +9,7 @@ def forward_chaining(state, trace):
     newRules = []
     for rule in rules:
       add = True
-      for premise, value in rule["premises"].items(): # check if all premisses are satisfied
+      for premise, value in rule["premisses"].items(): # check if all premisses are satisfied
         if (premise not in state or value != state[premise]) and (premise not in new or value != new[premise]):
           add = False
           break
