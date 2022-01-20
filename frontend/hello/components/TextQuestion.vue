@@ -11,8 +11,30 @@
     "
   >
     <div class="container mx-auto px-4 w-100 sm:w-10/12 md:w-8/12 z-index-10">
-    <nuxt-link class="home-button" to="/">Home</nuxt-link>
-      <h1 class="text-2xl mt-4 leading-7 font-bold">TestChooser</h1>
+      <nuxt-link class="home-button" to="/">Home</nuxt-link>
+      <div class="flex justify-between content-center">
+        <h1 class="text-2xl mt-4 leading-7 font-bold uppercase">
+          Statistics Picker
+        </h1>
+
+        <button
+        @click="sidebar= !sidebar"
+          class="
+            inline-block
+            bg-indigo-200
+            rounded-lg
+            px-4
+            py-2
+            text-sm
+            font-semibold
+            uppercase
+            text-indigo
+            mb-2
+          "
+        >
+          Rules/Facts
+        </button>
+      </div>
       <!--<p class="mt-4">
         <span
           >Question
@@ -41,142 +63,201 @@
         v-if="!!qDict && qDict.keywords"
         style="z-index: 2000 !important"
       >
-        <h3 class="text-xl leading-7 font-bold capitalize">Question Description:</h3>
-        <br>
-        <div v-if="qDict.info">
-          {{ qDict.info }}
+        <h3 class="text-xl leading-7 font-bold capitalize">Key Terms:</h3>
+        <div v-for="(item, index) in qDict.keywords" :key="index">
+          <b>{{ index }}:</b> {{ item }}
         </div>
       </vue-tailwind-modal>
 
-      <div class="rounded-lg overflow-hidden shadow-lg bg-white mt-4 mb-32">
-        <div class="px-6 py-4">
-          <p class="text-gray-700 text-xl">
-            {{ question }}
-
-            <a class="link-button" v-if="!!question && questionName != 'solved'" @click="showModal = true"
-              >More Info</a
-            >
-          </p>
-
-          <div v-if="questionName != 'solved'">
-
+      <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+          <div :class="sidebar ? 'col-span-3' : 'col-span-5'">
             <div
-              v-for="answerOption in answerOptions"
-              :key="answerOption"
-              class="flex items-center mr-4 my-2"
+              class="rounded-lg overflow-hidden shadow-lg bg-white mt-4 mb-32"
             >
-              <input
-                type="radio"
-                name="radio"
-                v-model="answer"
-                :value="answerOption"
-              />
-              <label class="ml-4 capitalize"> {{ answerOption }}</label>
+              <div class="px-6 py-4">
+                <p class="text-gray-700 text-xl">
+                  {{ question }}
+
+                  <a
+                    class="link-button"
+                    v-if="!!question && questionName != 'solved'"
+                    @click="showModal = true"
+                    >More Info</a
+                  >
+                </p>
+
+                <div v-if="questionName != 'solved'">
+                  <div
+                    v-for="answerOption in answerOptions"
+                    :key="answerOption"
+                    class="flex items-center mr-4 my-2"
+                  >
+                    <input
+                      type="radio"
+                      name="radio"
+                      v-model="answer"
+                      :value="answerOption"
+                    />
+                    <label class="ml-4 capitalize"> {{ answerOption }}</label>
+                  </div>
+                </div>
+                <div v-if="questionName == 'solved'">
+                  <span style="white-space: pre-wrap">{{ description }}</span>
+                </div>
+              </div>
+              <div class="px-6 pt-4 pb-2">
+                <span v-if="questionName == 'solved'">
+                  <button
+                    @click.prevent="reset"
+                    class="
+                      inline-block
+                      bg-pink-100
+                      rounded-lg
+                      px-8
+                      py-5
+                      text-sm
+                      font-semibold
+                      uppercase
+                      text-grey-700
+                      mr-2
+                      mb-2
+                    "
+                  >
+                    Reset
+                  </button>
+
+                  <button
+                    @click.prevent="undo"
+                    class="
+                      inline-block
+                      bg-pink-100
+                      rounded-lg
+                      px-8
+                      py-5
+                      text-sm
+                      font-semibold
+                      uppercase
+                      text-grey-700
+                      mr-2
+                      mb-2
+                    "
+                  >
+                    Undo
+                  </button>
+                </span>
+                <span v-else>
+                  <button
+                    @click.prevent="formSubmit"
+                    class="
+                      inline-block
+                      bg-indigo-500
+                      rounded-lg
+                      px-8
+                      py-5
+                      text-sm
+                      font-semibold
+                      uppercase
+                      text-white
+                      mr-2
+                      mb-2
+                    "
+                  >
+                    Submit
+                  </button>
+
+                  <button
+                    @click.prevent="reset"
+                    class="
+                      inline-block
+                      bg-pink-100
+                      rounded-lg
+                      px-8
+                      py-5
+                      text-sm
+                      font-semibold
+                      uppercase
+                      text-grey-700
+                      mr-2
+                      mb-2
+                    "
+                  >
+                    Reset
+                  </button>
+
+                  <button
+                    @click.prevent="undo"
+                    class="
+                      inline-block
+                      bg-pink-100
+                      rounded-lg
+                      px-8
+                      py-5
+                      text-sm
+                      font-semibold
+                      uppercase
+                      text-grey-700
+                      mr-2
+                      mb-2
+                    "
+                  >
+                    Undo
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
-          <div v-if="questionName == 'solved'">
-            <span style="white-space: pre-wrap;">{{ description }}</span>
+          <div class="col-span-2" v-show="sidebar">
+            <div
+              class="
+                rounded-lg
+                overflow-hidden
+                shadow-lg
+                bg-white
+                mt-4
+                mb-32
+                p-4
+              "
+            >
+              <div v-if="qDict.trace && qDict.trace.rules">
+                <h4 class="font-bold">Rules</h4>
+                <div class="my-2">
+                  <div v-for="(item, index) in qDict.trace.rules" :key="index">
+                    <ul v-for="(it, index) in item" :key="index">
+                      <li
+                        v-for="(i, index) in Object.keys(it.conclusion)"
+                        :key="index"
+                      >
+                        <strong>{{ i }}</strong
+                        >: {{ it.conclusion[i] || '--' }}
+                      </li>
+                      <li
+                        v-for="(i, index) in Object.keys(it.premises)"
+                        :key="index"
+                      >
+                        <strong>{{ i }}</strong
+                        >: {{ it.conclusion[i] || '--' }}
+                      </li>
+                      <!-- {{it.premises || ''}} -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div v-if="qDict.trace && qDict.trace.facts">
+                <h4 class="font-bold">Facts</h4>
+                <div class="my-2">
+                  <div v-for="(item, index) in qDict.trace.facts" :key="index">
+                    <!-- {{item}} -->
+                    <ul>
+                      <li v-for="(it, index) in Object.keys(item)" :key="index">
+                        <strong>{{ it }}:</strong> {{ item[it] }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="px-6 pt-4 pb-2">
-          <span v-if="questionName == 'solved'">
-            
-            <button
-              @click.prevent="reset"
-              class="
-                inline-block
-                bg-pink-100
-                rounded-lg
-                px-8
-                py-5
-                text-sm
-                font-semibold
-                uppercase
-                text-grey-700
-                mr-2
-                mb-2
-              "
-            >
-              Reset
-            </button>
-
-            <button
-              @click.prevent="undo"
-              class="
-                inline-block
-                bg-pink-100
-                rounded-lg
-                px-8
-                py-5
-                text-sm
-                font-semibold
-                uppercase
-                text-grey-700
-                mr-2
-                mb-2
-              "
-            >
-              Undo
-            </button>
-          </span>
-          <span v-else>
-            <button
-              @click.prevent="formSubmit"
-              class="
-                inline-block
-                bg-indigo-500
-                rounded-lg
-                px-8
-                py-5
-                text-sm
-                font-semibold
-                uppercase
-                text-white
-                mr-2
-                mb-2
-              "
-            >
-              Submit
-            </button>
-
-            <button
-              @click.prevent="reset"
-              class="
-                inline-block
-                bg-pink-100
-                rounded-lg
-                px-8
-                py-5
-                text-sm
-                font-semibold
-                uppercase
-                text-grey-700
-                mr-2
-                mb-2
-              "
-            >
-              Reset
-            </button>
-
-            <button
-              @click.prevent="undo"
-              class="
-                inline-block
-                bg-pink-100
-                rounded-lg
-                px-8
-                py-5
-                text-sm
-                font-semibold
-                uppercase
-                text-grey-700
-                mr-2
-                mb-2
-              "
-            >
-              Undo
-            </button>
-          </span>
         </div>
       </div>
     </div>
@@ -207,7 +288,8 @@ export default {
       message: '',
       showModal: false,
       qDict: {},
-      no: 0
+      no: 0,
+      sidebar: false,
     }
   },
   created() {
@@ -222,7 +304,7 @@ export default {
         const qDict = await this.$axios.$get(url)
         this.handleQDict(qDict)
       } catch (error) {
-        console.log('error', error);
+        console.log('error', error)
       }
     },
     async postAnswer() {
@@ -231,14 +313,14 @@ export default {
       const qDict = await this.$axios.$post(url)
       this.handleQDict(qDict)
     },
-    async undo(){
+    async undo() {
       const url = `${this.baseUrl}/undo`
       console.log(url)
       const qDict = await this.$axios.$post(url)
       this.handleQDict(qDict)
       this.renderForm = true
     },
-    async reset(){
+    async reset() {
       const url = `${this.baseUrl}/reset`
       console.log(url)
       const qDict = await this.$axios.$post(url)
@@ -298,10 +380,13 @@ img.illustration {
   width: 500px;
 }
 .bg-smoke-800 {
-    background: rgb(0, 0, 0, 60%);
+  background: rgb(0, 0, 0, 60%);
+}
+.fixed.inset-0.w-full.h-screen.flex.items-center.justify-center.bg-smoke-dark {
+  background: rgb(0, 0, 0, 70%) !important;
 }
 
-.home-button:hover{
+.home-button:hover {
   color: rgb(0 97 255);
   text-decoration: underline;
 }

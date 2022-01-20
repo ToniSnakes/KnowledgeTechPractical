@@ -14,8 +14,9 @@
             leading-tight
           "
         >
-          Welcome to
-          <span class="text-indigo-700">TestChooser</span>
+          Welcome to the 
+          <span class="text-indigo-700">survey</span>
+          of your dreams
         </h1>
         <p
           class="
@@ -27,18 +28,7 @@
             sm:text-lg
           "
         >
-          Simply answer the following questions about your goals and data, and we will recommend you an appropriate test.
-        </p>
-        <p
-          class="
-            mt-5
-            text-gray-600
-            font-normal
-            text-center text-lg
-            sm:text-sm
-          "
-        >
-          Caution: the statistical information provided is not exhaustive and the recommendations may deviate from what would be most appropriate in your situation.
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam assumenda reiciendis totam.
         </p>
       </div>
       <div class="flex justify-center items-center">
