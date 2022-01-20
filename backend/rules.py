@@ -185,15 +185,6 @@ rules = [
 	},
 	{
 		"premises": {
-			"test class": "t-test (unpaired two sample)",
-			"equal sample sizes": "false"
-		},
-		"conclusion": {
-			"welch's t-test": "true"
-		}
-	},
-	{
-		"premises": {
 			"goal": "compare statistics (e.g. means, variances) between samples or groups",
 			"statistics goal-update": "mean"
 		},

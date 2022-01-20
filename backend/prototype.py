@@ -43,7 +43,13 @@ def findConclusion(goal):
       if conclusion == goal:
         return rule # Otherwise return None
 
-def getDepth(goal, rule):
+def findConclusionValue(goal, desired):
+  for rule in rules:
+    for conclusion, value in rule["conclusion"].items():
+      if conclusion == goal and value == desired:
+        return rule # Otherwise return None
+
+def getDepth(goal, rule, initial, goals):
   if goal in depth_tree.keys():
     return depth_tree[goal]
   #if goal == "logistic regression":
@@ -58,7 +64,8 @@ def getDepth(goal, rule):
         max_depth = depth_tree[premise]
       continue
     depth = 0
-    new_rule = findConclusion(premise)
+    #new_rule = findConclusion(premise)
+    new_rule = findConclusionValue(premise, rule["premises"][premise])
     #if new_rule and premise not in state.keys():
     #if premise in state.keys():
     #  print("Exists:")
@@ -68,10 +75,16 @@ def getDepth(goal, rule):
     #  print(rule["premises"][premise])
     if premise in state.keys() and state[premise] != rule["premises"][premise]:
       depth = HIGH_NUMBER # high number
+      #goals.remove(initial)
+      #print("GOAL REMOVED:")
+      #print(goal)
+      #return -1
     elif new_rule:
       if premise not in state.keys():
         #depth = getDepth(list(new_rule["premises"].keys()))
-        depth = getDepth(premise, new_rule)
+        depth = getDepth(premise, new_rule, initial, goals)
+        #if depth == -1:
+        #  return -1
     if depth > max_depth:
       max_depth = depth
   depth_tree[goal] = max_depth + 1
@@ -85,7 +98,7 @@ def buildDepth(goals):
     rule = findConclusion(goal)
     #if goal not in depth_tree.keys():
       #depth_tree["goal"] = getDepth(goal, rule) + 1
-    getDepth(goal, rule)
+    getDepth(goal, rule, goal, goals)
 
 def setUnknown(goal):
   print(goal)
@@ -101,9 +114,13 @@ def setUnknown(goal):
         print(premise)
         newTraceFacts[premise] = "unknown"
         state[premise] = "unknown"
-        break # easier to add only one than refactoring
+        #found = True
+        #break # easier to add only one than refactoring
+        return True
     elif premise in depth_tree.keys():
-      setUnknown(premise)
+      if (setUnknown(premise)):
+        return True
+  return False
 
 def findUnknown():
   buildDepth(goals)
