@@ -32,7 +32,7 @@
             mb-2
           "
         >
-          Rules/Facts
+          TRACE
         </button>
       </div>
       <!--<p class="mt-4">
@@ -99,7 +99,7 @@
                       v-model="answer"
                       :value="answerOption"
                     />
-                    <label class="ml-4 capitalize"> {{ answerOption }}</label>
+                    <label class="ml-4"> {{ answerOption }}</label>
                   </div>
                 </div>
                 <div v-if="questionName == 'solved'">
