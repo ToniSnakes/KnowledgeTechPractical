@@ -19,7 +19,7 @@ questions = {
     "situation":
     {
         "question": "How many samples (or groups) and measurements were taken?",
-        "answers": { "One sample, one measurement": { "situation": "one sample, one measurement" }, "One sample, two measurements": { "situation": "one sample, two measurements" } , "Two samples or groups, one measurement" : {"situation": "two samples or groups, one measurement"}, "More than two samples (or groups), one measurement": { "situation": "more than two samples (or groups), one measurement" }, "One sample, more than two measurements": { "situation": "one sample, more than two measurements" } },
+        "answers": { "One sample, one measurement": { "situation": "one sample, one measurement" }, "One sample, two measurements": { "situation": "one sample, two measurements" }, "One sample, more than two measurements": { "situation": "one sample, more than two measurements" }  , "Two samples (or groups), one measurement" : {"situation": "two samples (or groups), one measurement"}, "More than two samples (or groups), one measurement": { "situation": "more than two samples (or groups), one measurement" }},
         "info": """The number of samples is the number of times a subset of subjects or observations is drawn from the population. With multiple measurements, the same subjects or observations are measured multiple times, e.g. before and after a treatment. multiple measurements are usually dependent."""
     },
     #4.
@@ -59,10 +59,10 @@ questions = {
         Examples of discrete data: number of points in a game, the test-score as a count of correct answers."""
     },
     #8.
-    "statistics goal":
+    "statistics goal-update":
     {
         "question": "Which statistics would you like to compare?",
-        "answers":  {"Medians": {"statistics goal": "median"}, "Means": {"statistics goal": "mean"}, "Variances":{ "statistics goal": "variance"}},
+        "answers":  {"Medians": {"statistics goal-update": "median"}, "Means": {"statistics goal-update": "mean"}, "Variances":{ "statistics goal-update": "variance"}},
         "info": """Both median and mean are measures of spread. The median (r: median(.)) is the value separating the upper half from lower half of the values in the sample. The mean (r: mean(.)) is the arithmetic average of all values in the sample.
         The variance (r: var(.)) is a measure of how spread out the values are in the sample. It is the squared standard deviation"""
     },
@@ -123,10 +123,10 @@ questions = {
         Examples of discrete data: number of points in a game, the test-score as a count of correct answers"""
     },
     #17.
-    "goal-update":
+    "relationship goal-update":
     {
         "question": "What about the relationship are you looking for?",
-        "answers":  {"Test for an effect or model the relationship": {"goal-update": "test for an effect or find a model of the relationship"}, "Test for correlation": {"goal-update": "test for correlation"}, "Test for independence": {"goal-update": "test for independence"}},
+        "answers":  {"Test for an effect or model the relationship": {"relationship goal-update": "test for an effect or find a model of the relationship"}, "Test for correlation": {"relationship goal-update": "test for correlation"}, "Test for independence": {"relationship goal-update": "test for independence"}},
         "info": """Test for an effect includes tests that show if one variable affects the other.
         A model of the relationship returns the strengths (coefficients) of these effects.
         A test for correlation tests whether or how strong the values of variables move in coordination with each other"""

@@ -12,7 +12,7 @@ recommendations = {
     "wilcoxon matched-pairs signed rank test": "Wilcoxon matched-pairs signed rank test",
     "moods median": "Moods Median",
     "student's t-test": "Student's t-test",
-    "welsh's t-test": "Welsh's t-test",
+    "welch's t-test": "Welch's t-test",
     "mann whitney u test (wilcoxon rank sum test)": "Mann Whitney U Test (Wilcoxon Rank Sum Test)",
     "t-test (paired sample)": "T-test (paired sample)",
     "one-way anova": "One-way ANOVA",
@@ -25,7 +25,7 @@ recommendations = {
     "bartlett's test": "Bartlett's Test",
     "pearson correlation": "Pearson Correlation",
     "simple linear regression": "Simple Linear Regression",
-    "multiple regression": "Multiple Regression",
+    "multiple linear regression": "Multiple Linear Regression",
     "lasso regression": "Lasso Regression",
     "spearman correlation": "Spearman Correlation",
     "none": "This is not in our database"
