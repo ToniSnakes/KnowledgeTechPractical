@@ -223,7 +223,7 @@ descriptions = {
   - Homoscedasticity
   R-command(s):
   """,
-  "multiple regression":
+  "multiple linear regression":
   """Multiple Regression
   When to use it? 
   dv type continuous, goal: Test for a relationship (q4), number of ivs: more than one (q12), include all ivs: true (q13)

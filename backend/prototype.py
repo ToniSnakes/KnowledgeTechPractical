@@ -101,6 +101,7 @@ def setUnknown(goal):
         print(premise)
         newTraceFacts[premise] = "unknown"
         state[premise] = "unknown"
+        break # easier to add only one than refactoring
     elif premise in depth_tree.keys():
       setUnknown(premise)
 

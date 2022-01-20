@@ -1,5 +1,8 @@
+from recommendations import *
 # State fields considered solutions
-solutions = [
+solutions = list(recommendations.keys())
+
+solutions_written = [
     "chi-square goodness of fit test",
     "logistic regression",
     "chi-square test for independence",
