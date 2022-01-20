@@ -41,8 +41,15 @@
         v-if="!!qDict && qDict.keywords"
         style="z-index: 2000 !important"
       >
-        
+        <h3 class="text-xl leading-7 font-bold capitalize">Question Description:</h3>
+        <div v-if="qDict.info">
+          {{ qDict.info }}
+        </div>
+        <br>
         <h3 class="text-xl leading-7 font-bold capitalize">Key Terms:</h3>
+        <div v-if!="qDict.keywords.length">
+          None
+        </div>
         <div
           v-for="(item, index) in qDict.keywords"
           :key="index"
