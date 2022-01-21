@@ -75,7 +75,15 @@ rules = [
 	{
 		"premises": {
 			"test class": "z- or t-test (one-sample)",
-			"variance known": "true",
+			"variance known": "true"
+		},
+		"conclusion": {
+			"z-test": "true"
+		}
+	},
+	{
+		"premises": {
+			"test class": "z- or t-test (one-sample)",
 			"sample size": "large"
 		},
 		"conclusion": {
@@ -116,7 +124,7 @@ rules = [
 	{
 		"premises": {
 			"goal hypothesis": "true",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"dv normally distributed": "false"
 		},
 		"conclusion": {
@@ -135,9 +143,8 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "median",
-			"situation": "one sample, one measurement",
-			"dv numerical type": "continuous",
-			"dv normally distributed": "false",
+			"situation": "two samples (or groups), one measurement",
+			"dv type": "numerical"
 		},
 		"conclusion": {
 			"wilcoxon signed rank test": "true"
@@ -146,9 +153,8 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "median",
-			"dv numerical type": "continuous",
-			"dv normally distributed": "false",
 			"situation": "one sample, two measurements",
+			"dv type": "numerical"
 		},
 		"conclusion": {
 			"wilcoxon matched-pairs signed rank test": "true"
@@ -158,7 +164,7 @@ rules = [
 		"premises": {
 			"goal statistics": "median",
 			"situation": "more than two samples (or groups), one measurement",
-			"dv numerical type": "continuous"
+			"dv type": "numerical"
 		},
 		"conclusion": {
 			"moods median": "true"
@@ -240,7 +246,7 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "mean",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"situation": "more than two samples (or groups), one measurement",
 			"iv types": "one categorical iv",
 			"dv normally distributed": "false"
@@ -252,7 +258,7 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "mean",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"situation": "more than two samples (or groups), one measurement",
 			"iv types": "one categorical and one numerical iv"
 		},
@@ -263,7 +269,7 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "mean",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"situation": "more than two samples (or groups), one measurement",
 			"iv types": "multiple categorical ivs"
 		},
@@ -274,7 +280,7 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "mean",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"situation": "one sample, more than two measurements",
 			"dv normally distributed": "true"
 		},
@@ -315,7 +321,7 @@ rules = [
 	},
 	{
 		"premises": {
-			"goal statistics": "mean",
+			"goal statistics": "variance",
 			"dv numerical type": "continuous",
 			"dv normally distributed": "true",
 			"situation": "more than two samples (or groups), one measurement"
@@ -366,7 +372,7 @@ rules = [
 	{
 		"premises": {
 			"goal relationship": "test for effect",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"number of ivs": "more than one",
 			"include all ivs": "true"
 		},
@@ -377,7 +383,7 @@ rules = [
 	{
 		"premises": {
 			"goal relationship": "test for effect",
-			"dv numerical type": "continuous",
+			"dv type": "numerical",
 			"number of ivs": "more than one",
 			"include all ivs": "false"
 		},
@@ -385,19 +391,4 @@ rules = [
 			"lasso regression": "true"
 		}
 	}
-]
-
-rules2 = [
-          { "premises": { "homoskedastic": "true", "independent observations": "true" },
-            "conclusion": { "regression": "true" } },
-          { "premises": { "regression": "true", "output continuity": "false" },
-            "conclusion": { "logistic regression": "true" } },
-          { "premises": { "regression": "true", "output continuity": "true" },
-            "conclusion": { "not logistic": "true" } },
-          { "premises": { "not logistic": "true", "output continuity": "true", "linear relationship": "true", "output normally distributed": "true" },
-            "conclusion": { "linear or lasso": "true" } },
-          { "premises": { "linear or lasso": "true", "all predictors important": "true" },
-            "conclusion": { "linear regression": "true" } },
-          { "premises": { "linear or lasso": "true", "all predictors important": "false" },
-            "conclusion": { "lasso regression": "true" } }
 ]

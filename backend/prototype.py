@@ -202,16 +202,6 @@ def resetState():
   add_step(state, trace)
   findUnknown()
 
-def findKeywords(text):
-  to_find = list(keywords.keys())
-  words = text.split()
-  found = {}
-  for word in words:
-    for key in to_find:
-      if word.lower() == key.lower() or word[:-1].lower() == key.lower():
-        found[word] = keywords[key]
-  return found
-
 def traceUpdate(key, value):
   global trace
   for traceStep in trace["facts"]:
@@ -234,11 +224,9 @@ def nextQuestion():
               "description": descriptions[recommend],
               "trace": trace }
   question_text = questions[nextQ]["question"]
-  present_keywords = findKeywords(question_text)
   return { "name": nextQ, "question": question_text,
     "answers": list(questions[nextQ]["answers"].keys()),
     "info": questions[nextQ]["info"],
-    "keywords": present_keywords,
     "trace": trace } # return the next question
 
 @app.route("/answer/<question>/<inp>", methods=['POST'])

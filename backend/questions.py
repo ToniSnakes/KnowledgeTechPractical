@@ -12,7 +12,7 @@ questions = {
     "sample size":
     {
         "question": "How large is the sample size?",
-        "answers": { "Large (>50)": { "sample size": "large" } , "Small (<=50)": { "sample size": "small"}},
+        "answers": { "Large (>30)": { "sample size": "large" } , "Small (<=30)": { "sample size": "small"}},
         "info": """The number of observations in a sample. R: length(.)"""
     },
     #3.
@@ -35,9 +35,9 @@ questions = {
     "dv normally distributed":
     {
         "question": "How is the dependent variable distributed?",
-        "answers":  { "Normally": {"dv normally distributed": "true"}, "Not normally": {"dv normally distributed": "false"}},
+        "answers":  { "Normally": {"dv normally distributed": "true"}, "Not normally (or unknown)": {"dv normally distributed": "false"}},
         "info": """The dependent variable is a variable whose value depends on that of at least another (independent variable).
-        information on how to test for normality:
+        Information on how to test for normality:
         http://www.sthda.com/english/wiki/normality-test-in-r"""
     },
     #6.
@@ -78,7 +78,7 @@ questions = {
     {
         "question": "Are the sizes of the samples or groups equal?",
         "answers":  {"Equal sample sizes": {"equal sample sizes": "true"}, "Unequal sample sizes": {"equal sample sizes": "false"}},
-        "info": """r: length(.)"""
+        "info": """R-command: length(.)"""
     },
     #11.
     "iv types":
@@ -102,7 +102,7 @@ questions = {
         "question": "Should all independent variables have coefficients in the model?",
         "answers":  { "Yes": { "include all ivs": "true"}, "No": {"include all ivs": "false"}},
         "info": """In your setting, the independent variables are likely the variables that have an effect on a dependent variable.
-        Do you wish to include all independent variables in the model?", if you are unsure that all independent variables are important or if you already know that some independent variables are unimportant, choose 'no'."""
+        Do you wish to include all independent variables in the model?", if you are unsure that all independent variables are important, choose 'no'."""
     },
     #15.
     "dv type":
@@ -147,18 +147,3 @@ questions = {
             Examples of discrete data: number of points in a game, the test-score as a count of correct answers"""
     }
 }
-
-questions2 = {
-  "homoskedastic":
-    { "question": "Is the data homoskedastic?", "answers": { "yes": { "homoskedastic": "true" }, "no": { "homoskedastic": "false" } } },
-  "independent observations":
-    { "question": "Are the observations independent of one another?", "answers": { "yes": { "independent observations": "true" }, "no": { "independent observations": "false" } } },
-  "output continuity":
-    { "question": "Is the output continuous or binary?", "answers": { "continuous": { "output continuity": "true" }, "binary": { "output continuity": "false" } } }, # change to actual values continuous/binary
-  "linear relationship":
-    { "question": "Is the relationship between the predictors linear?", "answers": { "yes": { "linear relationship": "true" }, "no": { "linear relationship": "false" } } },
-  "output normally distributed":
-    { "question": "Is the output normally distributed?", "answers": { "yes": { "output normally distributed": "true" }, "no": { "output normally distributed": "false" } } },
-  "all predictors important":
-    { "question": "Are all predictors important?", "answers": { "yes": { "all predictors important": "true" }, "no": { "all predictors important": "false" } } },
-  }

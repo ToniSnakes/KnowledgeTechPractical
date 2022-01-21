@@ -30,10 +30,3 @@ recommendations = {
     "spearman correlation": "Spearman Correlation",
     "none": "This is not in our database"
 }
-
-recommendations2 = {
-  "logistic regression": "Logistic Regression",
-  "linear regression": "Linear Regression",
-  "lasso regression": "Lasso Regression",
-  "none": "This is not in our database"
-  }

@@ -18,7 +18,7 @@
         </h1>
 
         <button
-        @click="sidebar= !sidebar"
+          @click="sidebar = !sidebar"
           class="
             inline-block
             bg-indigo-200
@@ -32,7 +32,7 @@
             mb-2
           "
         >
-          TRACE
+          Trace
         </button>
       </div>
       <!--<p class="mt-4">
@@ -55,18 +55,17 @@
       </p>
       <Alert v-if="!!message" :message="message" status="'error'" />-->
 
+      
       <vue-tailwind-modal
         :showing="showModal"
         @close="showModal = false"
         :showClose="true"
         :backgroundClose="true"
-        v-if="!!qDict && qDict.keywords"
+        v-if="!!qDict"
         style="z-index: 2000 !important"
       >
-        <h3 class="text-xl leading-7 font-bold capitalize">Key Terms:</h3>
-        <div v-for="(item, index) in qDict.keywords" :key="index">
-          <b>{{ index }}:</b> {{ item }}
-        </div>
+        <h3 class="text-xl leading-7 font-bold capitalize">More info</h3>
+        <p>{{qDict.info}}</p>
       </vue-tailwind-modal>
 
       <div class="container mx-auto">
@@ -99,7 +98,7 @@
                       v-model="answer"
                       :value="answerOption"
                     />
-                    <label class="ml-4"> {{ answerOption }}</label>
+                    <label class="ml-4 capitalize"> {{ answerOption }}</label>
                   </div>
                 </div>
                 <div v-if="questionName == 'solved'">
@@ -220,40 +219,51 @@
               "
             >
               <div v-if="qDict.trace && qDict.trace.rules">
-                <h4 class="font-bold">Rules</h4>
-                <div class="my-2">
-                  <div v-for="(item, index) in qDict.trace.rules" :key="index">
-                    <ul v-for="(it, index) in item" :key="index">
-                      <li
-                        v-for="(i, index) in Object.keys(it.conclusion)"
-                        :key="index"
-                      >
-                        <strong>{{ i }}</strong
-                        >: {{ it.conclusion[i] || '--' }}
-                      </li>
-                      <li
-                        v-for="(i, index) in Object.keys(it.premises)"
-                        :key="index"
-                      >
-                        <strong>{{ i }}</strong
-                        >: {{ it.conclusion[i] || '--' }}
-                      </li>
-                      <!-- {{it.premises || ''}} -->
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div v-if="qDict.trace && qDict.trace.facts">
-                <h4 class="font-bold">Facts</h4>
-                <div class="my-2">
-                  <div v-for="(item, index) in qDict.trace.facts" :key="index">
-                    <!-- {{item}} -->
-                    <ul>
-                      <li v-for="(it, index) in Object.keys(item)" :key="index">
-                        <strong>{{ it }}:</strong> {{ item[it] }}
-                      </li>
-                    </ul>
-                  </div>
+                <div v-for="(item, i) in qDict.trace.rules" :key="i">
+                  <h4 class="font-bold">Facts</h4>
+                  <ul>
+                    <li
+                      v-for="(it, index) in Object.keys(showFacts(i))"
+                      :key="index"
+                    >
+                      <strong>{{ it }}:</strong> {{ showFacts(i)[it] }}
+                    </li>
+                  </ul>
+
+                  <h4 class="font-bold mt-2">Rules</h4>
+                  <ul>
+                    <!-- <span v-for="(item, j) in qDict.trace.rules[i]" :key="j"> -->
+                    <li
+                      v-for="(i, index) in Object.keys(showRules(i))"
+                      :key="index"
+                    >
+                      <span
+                        >[
+                        <li
+                          v-for="(j, index) in Object.keys(item[i].premises)"
+                          :key="index"
+                        >
+                          <strong>{{ j }}</strong
+                          >: {{ item[i].premises[j] || '--' }}
+                        </li>
+                        ]
+                      </span>
+                      => [
+                      <span v-if="item[i].conclusion">
+                        <li
+                          v-for="(j, index) in Object.keys(item[i].conclusion)"
+                          :key="index"
+                        >
+                          {{ j }}: {{ index }}
+                        </li>
+                      </span>
+
+                      ]
+                    </li>
+                    <!-- </span> -->
+                  </ul>
+
+                  <br />
                 </div>
               </div>
             </div>
@@ -292,10 +302,27 @@ export default {
       sidebar: false,
     }
   },
+  computed: {
+    rules() {
+      let premises = []
+      let conclusion = []
+      this.qDict.trace.rules.forEach((item) => {
+        premises.push(item[0].premises)
+        conclusion.push(item[0].conclusion)
+      })
+      return { premises, conclusion }
+    },
+  },
   created() {
     this.fetchQuestion()
   },
   methods: {
+    showFacts(i) {
+      return this.qDict.trace.facts[i]
+    },
+    showRules(i) {
+      return this.qDict.trace.rules[i]
+    },
     async fetchQuestion() {
       try {
         const url = `${this.baseUrl}/nextQuestion`
