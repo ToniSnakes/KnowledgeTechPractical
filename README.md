@@ -1,10 +1,22 @@
-# KnowledgeTechPractical
+# Test Chooser: A Knowledge System for the Recommendation of Statistical Tests
+Late-night, a statistical task, but it’s been several years since the statistics
+course; students and professionals with brittle statistical knowledge needed a
+system that supports their choice of statistical tests. Therefore, we developed
+TestChooser in the course Knowledge Technology Practical at the RuG, which suggests
+statistical tests and models given a
+type of data and a hypothesis. The need for such a system was experienced
+first-hand but also by Megan Payne, the statistics expert that supported us in
+this task.
+
+By Amir Abdul Aziz , Antonio-Ionut Boar , and Joris Peters
+
+Link: https://ktp-frontend.tonisworkshop.com
 
 ## Important files ##
 
-The code for the backend is in `backend/hello.py`
+The code for the backend is in `backend`
 
-The relevant code for the frontend is in `frontend/hello/components` and `frontend/hello/pages`
+The relevant code for the frontend is in `frontend/components` and `frontend/pages`
 
 ## How to run ##
 
@@ -39,7 +51,7 @@ This will install a package that you need to use the virtual environment, it act
 To run the frontend (you need npm) on Ubuntu and Windows:
 
 ```
-cd frontend/hello/
+cd frontend/
 npm install
 npm run dev
 ```

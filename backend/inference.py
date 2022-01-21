@@ -14,7 +14,7 @@ def forward_chaining(state, trace):
           add = False
           break
       if add == True:
-        print(rule)
+        (rule)
         ruleIsNew = True  # Check if the rule hasn't been added to the trace, otherwise
         for ruleSet in trace["rules"]: # we can assume it's relevant for this step
           if rule in ruleSet:
@@ -26,14 +26,14 @@ def forward_chaining(state, trace):
           if conclusion not in state:
             new[conclusion] = value
     if not bool(new): # stop if we did not infer any new facts
-      print("STATE:")
-      print(state)
+      ("STATE:")
+      (state)
       break
-    print("NEW:")
-    print(new)
+    ("NEW:")
+    (new)
     trace["facts"].append(new.copy())
     trace["rules"].append(newRules.copy())
     for key, value in new.items(): # update our state with new facts
       state[key] = value
-    print("STATE:")
-    print(state)
+    ("STATE:")
+    (state)

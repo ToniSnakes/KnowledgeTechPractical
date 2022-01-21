@@ -14,7 +14,7 @@
       <nuxt-link class="home-button" to="/">Home</nuxt-link>
       <div class="flex justify-between content-center">
         <h1 class="text-2xl mt-4 leading-7 font-bold uppercase">
-          Statistics Picker
+          Test Chooser
         </h1>
 
         <button
@@ -35,27 +35,6 @@
           Trace
         </button>
       </div>
-      <!--<p class="mt-4">
-        <span
-          >Question
-          <span
-            class="
-              rounded-full
-              bg-indigo-400
-              uppercase
-              px-2
-              py-1
-              text-xs
-              font-bold
-              mr-3
-            "
-            >{{ no }}/10</span
-          ></span
-        >
-      </p>
-      <Alert v-if="!!message" :message="message" status="'error'" />-->
-
-      
       <vue-tailwind-modal
         :showing="showModal"
         @close="showModal = false"
@@ -103,6 +82,7 @@
                 </div>
                 <div v-if="questionName == 'solved'">
                   <span style="white-space: pre-wrap">{{ description }}</span>
+                  <span style="white-space: pre-wrap; background-color: lightgray;">{{r}}</span>
                 </div>
               </div>
               <div class="px-6 pt-4 pb-2">
@@ -206,7 +186,7 @@
               </div>
             </div>
           </div>
-          <div class="col-span-2" v-show="sidebar">
+          <div class="col-span-2" v-show="sidebar" style="overflow-y: scroll;">
             <div
               class="
                 rounded-lg
@@ -218,7 +198,7 @@
                 p-4
               "
             >
-              <div v-if="qDict.trace && qDict.trace.rules">
+              <div v-if="qDict.trace && qDict.trace.rules" style="height: 200 px;">
                 <div v-for="(item, i) in qDict.trace.rules" :key="i">
                   <h4 class="font-bold">Facts</h4>
                   <ul>
@@ -232,7 +212,6 @@
 
                   <h4 class="font-bold mt-2">Rules</h4>
                   <ul>
-                    <!-- <span v-for="(item, j) in qDict.trace.rules[i]" :key="j"> -->
                     <li
                       v-for="(i, index) in Object.keys(showRules(i))"
                       :key="index"
@@ -260,9 +239,7 @@
 
                       ]
                     </li>
-                    <!-- </span> -->
                   </ul>
-
                   <br />
                 </div>
               </div>
@@ -292,6 +269,7 @@ export default {
       question: this.questionProp,
       questionName: '',
       description: '',
+      r: 'hey',
       renderForm: true,
       baseUrl: process.env.BASE_URL || 'http://localhost:5000',
       answerOptions: [],
@@ -363,17 +341,14 @@ export default {
       if (qDict.name == 'solved') {
         this.renderForm = false
         this.description = qDict.description
+        this.r = qDict.r
         this.message = "You've solved this question. Go to the next question"
       } else {
         this.answerOptions = qDict.answers
       }
     },
     reloadForm() {
-      //this.renderTextInput = false;
       this.answer = ''
-      /*this.$nextTick(() => {    // keep as reference if we need it again
-              this.renderTextInput = true;
-            })*/
     },
     formSubmit() {
       console.log('form submitted')

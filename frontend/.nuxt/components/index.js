@@ -1,3 +1,4 @@
+export { default as Alert } from '../..\\components\\Alert.vue'
 export { default as NuxtLogo } from '../..\\components\\NuxtLogo.vue'
 export { default as TextQuestion } from '../..\\components\\TextQuestion.vue'
 

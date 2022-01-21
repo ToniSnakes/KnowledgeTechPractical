@@ -13,24 +13,12 @@ state = start.copy()
 trace = copy.deepcopy(emptyTrace)
 stack = []
 
-def stack_print(stack):
-  for step in stack:
-    print("")
-    print(step)
-  print("")
-
 def add_step(state, trace):
   global stack
-  print("========== ADDING TO STACK ==========")
-  print("==========  CURRENT STACK  ==========")
-  stack_print(stack)
   step = {}
   step["state"] = state.copy()
   step["trace"] = copy.deepcopy(trace)
-  print("==========   NEXT STACK    ==========")
   stack.append(step)
-  stack_print(stack)
-  print("==========    END ADD      ==========")
 
 goals = list(recommendations.keys())
 goals.pop() # remove the extra "none" state
@@ -52,13 +40,8 @@ def findConclusionValue(goal, desired):
 def getDepth(goal, rule, initial, goals):
   if goal in depth_tree.keys():
     return depth_tree[goal]
-  #if goal == "logistic regression":
-  #  print("DEBUGGING")
-  #  print(state)
   max_depth = 0
   for premise in rule["premises"].keys():
-    #if goal == "logistic regression":
-    #  print(premise)
     if premise in depth_tree.keys():
       if depth_tree[premise] > max_depth:
         max_depth = depth_tree[premise]
@@ -66,25 +49,11 @@ def getDepth(goal, rule, initial, goals):
     depth = 0
     #new_rule = findConclusion(premise)
     new_rule = findConclusionValue(premise, rule["premises"][premise])
-    #if new_rule and premise not in state.keys():
-    #if premise in state.keys():
-    #  print("Exists:")
-    #  print(goal)
-    #  print(premise)
-    #  print(state[premise])
-    #  print(rule["premises"][premise])
     if premise in state.keys() and state[premise] != rule["premises"][premise]:
       depth = HIGH_NUMBER # high number
-      #goals.remove(initial)
-      #print("GOAL REMOVED:")
-      #print(goal)
-      #return -1
     elif new_rule:
       if premise not in state.keys():
-        #depth = getDepth(list(new_rule["premises"].keys()))
         depth = getDepth(premise, new_rule, initial, goals)
-        #if depth == -1:
-        #  return -1
     if depth > max_depth:
       max_depth = depth
   depth_tree[goal] = max_depth + 1
@@ -96,26 +65,19 @@ def buildDepth(goals):
   newTraceFacts = {}
   for goal in goals:
     rule = findConclusion(goal)
-    #if goal not in depth_tree.keys():
-      #depth_tree["goal"] = getDepth(goal, rule) + 1
     getDepth(goal, rule, goal, goals)
 
 def setUnknown(goal):
-  print(goal)
+  (goal)
   rule = findConclusion(goal)
-  print(depth_tree[goal])
+  (depth_tree[goal])
   for premise in rule["premises"].keys():
-    #if depth_tree[rule] == 1 and premise not in depth_tree.keys():
     if depth_tree[goal] == 1:
-      #if premise not in depth_tree.keys():  # or in state
-      #if premise not in state.keys():  # or in state
       if premise in questions.keys() and premise not in state.keys():  # or in state
-        print("TO ADD")
-        print(premise)
+        ("TO ADD")
+        (premise)
         newTraceFacts[premise] = "unknown"
         state[premise] = "unknown"
-        #found = True
-        #break # easier to add only one than refactoring
         return True
     elif premise in depth_tree.keys():
       if (setUnknown(premise)):
@@ -138,7 +100,7 @@ def findUnknown():
   setUnknown(lowest_goal)
   stack.pop()
   add_step(state, trace)
-  print(depth_tree)
+  (depth_tree)
 
 add_step(state, trace)
 
@@ -176,20 +138,11 @@ def undoState():
   global state, trace, stack
   if len(stack) == 1:
     return
-  print("======== REMOVING FROM STACK ========")
-  print("==========  CURRENT STACK  ==========")
-  stack_print(stack)
   step = stack.pop() # Remove the last commit
-  step = stack.pop() # Inefficient 1/2: get the last element
-  print("==========   NEXT STACK    ==========")
-  stack_print(stack)
-  print("==========   END REMOVE    ==========")
-  print("==========      STEP       ==========")
-  print(step)
+  step = stack.pop() # get the last element
   state = step["state"].copy()
   trace = copy.deepcopy(step["trace"])
-  add_step(state, trace) # Inefficient 2/2: re-add the last element
-                         # Kept inefficiency since copies cannot be avoided anyway
+  add_step(state, trace) # re-add the last element
 
 def resetState():
   '''
@@ -222,6 +175,7 @@ def nextQuestion():
     recommend = solve()
     return { "name": nextQ, "question": recommendations[recommend],
               "description": descriptions[recommend],
+              "r": r[recommend],
               "trace": trace }
   question_text = questions[nextQ]["question"]
   return { "name": nextQ, "question": question_text,
@@ -238,8 +192,8 @@ def processAnswer(question, inp):
   :param inp: the user's answer
   :return: next question callback
   '''
-  print(question)
-  print(inp)
+  (question)
+  (inp)
   answers = questions[question]["answers"]
   for answer, values in answers.items():
     if inp == answer:

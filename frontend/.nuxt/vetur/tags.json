@@ -1,4 +1,7 @@
 {
+  "Alert": {
+    "description": "Auto imported from components/Alert.vue"
+  },
   "NuxtLogo": {
     "description": "Auto imported from components/NuxtLogo.vue"
   },
