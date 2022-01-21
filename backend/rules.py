@@ -212,7 +212,7 @@ rules = [
 	{
 		"premises": {
 			"goal statistics": "mean",
-			"dv type": "numerical",
+			"dv numerical type": "continuous",
 			"situation": "two samples (or groups), one measurement",
 			"dv normally distributed": "false"
 		},
