@@ -1,6 +1,6 @@
-export { default as Alert } from '../..\\components\\Alert.vue'
-export { default as NuxtLogo } from '../..\\components\\NuxtLogo.vue'
-export { default as TextQuestion } from '../..\\components\\TextQuestion.vue'
+export const Alert = () => import('../..\\components\\Alert.vue' /* webpackChunkName: "components/alert" */).then(c => wrapFunctional(c.default || c))
+export const NuxtLogo = () => import('../..\\components\\NuxtLogo.vue' /* webpackChunkName: "components/nuxt-logo" */).then(c => wrapFunctional(c.default || c))
+export const TextQuestion = () => import('../..\\components\\TextQuestion.vue' /* webpackChunkName: "components/text-question" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

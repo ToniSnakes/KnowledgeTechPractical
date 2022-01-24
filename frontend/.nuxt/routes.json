@@ -3,12 +3,14 @@
     "name": "survey",
     "path": "/survey",
     "component": "C:\\\\main\\\\y3\\\\t2\\\\KT\\\\KnowledgeTechPractical\\\\frontend\\\\pages\\\\survey.vue",
-    "chunkName": "pages/survey"
+    "chunkName": "pages/survey",
+    "_name": "_55bdd4bc"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\main\\\\y3\\\\t2\\\\KT\\\\KnowledgeTechPractical\\\\frontend\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_89d16d40"
   }
 ]
